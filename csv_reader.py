@@ -1,6 +1,6 @@
 import csv
 """
-with open("business2025.csv") as file:
+with open("csv/business2025.csv") as file:
         reader = csv.DictReader(file)
 
         total = 0
@@ -12,7 +12,7 @@ with open("business2025.csv") as file:
 
 total = 0
 
-with open("Testi.csv") as file:
+with open("csv/Testi.csv") as file:
     reader =csv.DictReader(file)
 
     for row in reader:

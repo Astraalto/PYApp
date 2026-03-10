@@ -2,7 +2,7 @@ import csv
 
 sales_per_period = {}
 
-with open("business2025.csv") as file:
+with open("csv/business2025.csv") as file:
     reader = csv.DictReader(file)
 
     for row in reader:
