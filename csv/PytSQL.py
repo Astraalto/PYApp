@@ -14,3 +14,14 @@ cursor.exexute("INSERT INTO myynti VALUES ('Sanna', 130)")
 cursor.exexute("INSERT INTO myynti VALUES ('Jukka', 90)")
 
 conn.comit()
+
+cursor.execute("""
+    SELECT asiakas, SUM(määrä)
+    FROM myynti
+    GROUP BY asiakas              
+        """)
+
+rows = cursor.fetchall()
+
+for row in rows:
+    print(row)
