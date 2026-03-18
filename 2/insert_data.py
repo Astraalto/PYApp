@@ -1,5 +1,10 @@
 import sqlite3
 
+DB_FILE = "company.db" 
+
+conn = sqlite3.connect(DB_FILE)
+cursor = conn.cursor()
+
 departments = [
     (1, "Engineering"),
     (2, "Marketing"),
@@ -19,4 +24,12 @@ employess = [
 cursor.executemany("INSERT INTO employees VALUES (?, ?, ?, ?, ?)", employess)
 conn.commit()
 
-print(" Data inserted")
+
+cursor.execute("SELECT COUNT(*) FROM departments")
+print(" Departments inserted: {cursor.fetchone()[0]}")
+
+cursor.execute("SELECT COUNT(*) FROM employees")
+print(" Employees inserted: {cursor.fetchone()[0]}")
+
+conn.close()
+print(f"\n Data saved to '{DB_FILE}'")
