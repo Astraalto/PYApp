@@ -5,6 +5,28 @@ DB_FILE = "company.db"
 conn = sqlite3.connect(DB_FILE)
 cursor = conn.cursor()
 
+def check_db_state():
+    cursor.execute("SELECT COUNT(*) FROM employees")
+    if cursor.fetchone()[0] == 0:
+        print("The employees table is empty")
+        return False
+    
+    cursor.execute("SELECT salary FROM employees WHERE name = 'Anne'")
+    anne = cursor.fetchone()
+
+    cursor.execute("SELECT id FROM employees WHERE name = 'Daniel'")
+    daniel = cursor.fetchone()
+
+    if (anne is None) or (daniel is None) or (round(anne[0]) != 55000):
+        return False
+    
+    return True
+
+if not check_db_state():
+    conn.close()
+    raise SystemExit
+
+
 def show_employees(label: str):
     print(f"\n--- {label} ---")
     cursor.execute("""
